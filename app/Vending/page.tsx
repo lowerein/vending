@@ -14,6 +14,24 @@ export default function Vending() {
       return;
     };
 
+    const waitPoint = async (location: string) => {
+      const url = "/api/temi";
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ command: `GOTO_${location}` }),
+      });
+
+      while (true) {
+        const response = await fetch("/api/temi");
+        const result = await response.json();
+        console.log(result);
+        await delay(1000);
+        if (result?.status === "complete" && result?.location === location)
+          break;
+      }
+    };
+
     const fetchData = async () => {
       const url =
         "https://wsp-api-819a8-default-rtdb.asia-southeast1.firebasedatabase.app/motor.json";
@@ -22,16 +40,33 @@ export default function Vending() {
         const response = await fetch(url);
         const result = await response.json();
         await delay(1000);
-        if (result === 0) break;
+        if (result === 0) {
+          await delay(5000);
+          break;
+        }
       }
 
       return;
     };
 
+    const saySpeech = async (speech: string) => {
+      const url = "/api/temi";
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ command: `SAY_${speech}` }),
+      });
+    };
+
     setShowBackdrop(true);
+    await waitPoint("p2");
     await putData();
     await fetchData();
+    await waitPoint("p3");
+    await saySpeech("Your package has been arrived.");
+    await delay(10000);
     setShowBackdrop(false);
+    await waitPoint("p2");
   };
 
   const [showBackdrop, setShowBackdrop] = useState(false);
