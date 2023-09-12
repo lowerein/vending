@@ -59,14 +59,15 @@ export default function Vending() {
     };
 
     setShowBackdrop(true);
+    await saySpeech(`Delivering task to p ${index}`);
     await waitPoint("p2");
     await putData();
     await fetchData();
     await waitPoint("p3");
     await saySpeech("Your package has been arrived.");
     await delay(10000);
-    setShowBackdrop(false);
     await waitPoint("p2");
+    setShowBackdrop(false);
   };
 
   const [showBackdrop, setShowBackdrop] = useState(false);
