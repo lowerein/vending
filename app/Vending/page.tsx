@@ -56,16 +56,16 @@ export default function Vending() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ command: `SAY_${speech}` }),
       });
+      await delay(5000);
     };
 
     setShowBackdrop(true);
-    await saySpeech(`Delivering task to p ${index}`);
+    await saySpeech(`Delivering item ${index} to p3`);
     await waitPoint("p2");
     await putData();
     await fetchData();
     await waitPoint("p3");
     await saySpeech("Your package has been arrived.");
-    await delay(10000);
     await waitPoint("p2");
     setShowBackdrop(false);
   };
