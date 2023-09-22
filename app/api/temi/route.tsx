@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const data = await request.json();
-  await fetch("http://temiapp.cpolar.io/api/data", {
+  await fetch("http://8.218.73.169:81/api/data", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ data: data.command }),
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  const response = await fetch("http://temiapp.cpolar.io/api/status", {
+  const response = await fetch("http://8.218.73.169:81/api/status", {
     cache: "no-store",
   });
   const json = await response.json();
