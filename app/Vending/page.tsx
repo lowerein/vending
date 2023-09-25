@@ -60,7 +60,7 @@ export default function Vending() {
     };
 
     setShowBackdrop(true);
-    await saySpeech(`Delivering item ${index + 6} to admin`);
+    await saySpeech(`Delivering item ${index + 6} to user admin`);
     await waitPoint("k3");
     await putData();
     await fetchData();
