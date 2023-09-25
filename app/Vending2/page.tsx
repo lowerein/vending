@@ -60,13 +60,13 @@ export default function Vending() {
     };
 
     setShowBackdrop(true);
-    await saySpeech(`Delivering item ${index} to admin`);
-    await waitPoint("k3");
+    //await saySpeech(`Delivering item ${index} to p3`);
+    //await waitPoint("p2");
     await putData();
     await fetchData();
-    await waitPoint("k1");
-    await saySpeech("Your package has been arrived.");
-    await waitPoint("k3");
+    //await waitPoint("p3");
+    //await saySpeech("Your package has been arrived.");
+    //await waitPoint("p2");
     setShowBackdrop(false);
   };
 
