@@ -92,7 +92,7 @@ export default function Vending() {
       <div className="flex flex-col w-full min-h-screen mx-auto my-auto">
         <div className="w-full bg-slate-700 text-white font-bold text-2xl">
           <div className="flex flex-row justify-between w-full p-5">
-            <div className="my-auto">WFYL</div>
+            <div className="my-auto">WSP Vending Machine Demo</div>
             <div className="flex flex-col text-sm justify-end">
               <div>{date.toISOString().substring(0, 10)}</div>
               {session ? (
@@ -115,8 +115,13 @@ export default function Vending() {
               className="w-full h-64 my-auto flex rounded-xl shadow-xl border border-slate-400 group hover:bg-slate-300 transition-all"
               key={index}
             >
-              <div className="flex mx-auto my-auto text-4xl font-semibold group-hover:scale-125 transition-all">
-                Item {index + 1}
+              <div className="relative flex mx-auto my-auto text-4xl font-semibold group-hover:scale-125 transition-all">
+                <img 
+                  className="object-contain h-48 w-96"
+                  src={`/photo/item${index + 1}.png`}
+                  sizes="100vw"
+                  alt={index.toString()}
+                />
               </div>
             </button>
           ))}
